@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dispatch Booking</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: #eef2f3;
+        color: #333;
+      }
+
+      header {
+        background: linear-gradient(135deg, #03783a, #05a84c);
+        color: #fff;
+        padding: 40px 20px;
+        text-align: center;
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .container {
+        width: 90%;
+        max-width: 500px;
+        margin: 30px auto;
+        background: #fff;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.1);
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        margin-bottom: 18px;
+        font-size: 15px;
+        background: #f9f9f9;
+      }
+
+      button {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+        border: none;
+        color: white;
+        background: #03783a;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      button:hover {
+        background: #025f2d;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>NBA IKEJA RIDER APP</h1>
+      <p>Fast • Reliable • Affordable</p>
+    </header>
+
+    <div class="container">
+      <h2>Book a Dispatch</h2>
+
+      <form id="bookingForm">
+        <label>Full Name</label>
+        <input type="text" id="name" required />
+
+        <label>Pickup Address</label>
+        <textarea id="pickup" required></textarea>
+
+        <label>Delivery Address</label>
+        <textarea id="delivery" required></textarea>
+
+        <label>Package Description</label>
+        <textarea id="package" required></textarea>
+
+        <label>Your Phone Number</label>
+        <input type="text" id="phone" required />
+
+        <button type="submit">Submit Booking</button>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("bookingForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const bookingData = {
+            name: document.getElementById("name").value,
+            pickup: document.getElementById("pickup").value,
+            delivery: document.getElementById("delivery").value,
+            package: document.getElementById("package").value,
+            phone: document.getElementById("phone").value,
+          };
+
+          localStorage.setItem("bookingData", JSON.stringify(bookingData));
+
+          window.location.href = "payment.html";
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Details</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: #eef2f3;
+      }
+
+      header {
+        background: linear-gradient(135deg, #03783a, #05a84c);
+        color: #fff;
+        padding: 40px 20px;
+        text-align: center;
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 500px;
+        margin: 30px auto;
+        background: #fff;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.1);
+      }
+
+      .summary,
+      .payment-box {
+        margin-bottom: 20px;
+      }
+
+      .payment-box {
+        background: #e8f8ec;
+        border-left: 6px solid #03783a;
+        padding: 15px;
+        border-radius: 12px;
+      }
+
+      button {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+        border: none;
+        color: white;
+        background: #25d366;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      button:hover {
+        background: #1eba56;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Payment Details</h1>
+      <p>Complete your transfer</p>
+    </header>
+
+    <div class="container">
+      <div class="summary">
+        <h3>Booking Summary</h3>
+        <p id="summaryText"></p>
+      </div>
+
+      <div class="payment-box">
+        <h3>Bank Transfer Details</h3>
+        <p><strong>Bank Name:</strong> Your Bank Name</p>
+        <p><strong>Account Name:</strong> Your Account Name</p>
+        <p><strong>Account Number:</strong> 0123456789</p>
+        <p>Please send payment proof on WhatsApp after transfer.</p>
+      </div>
+
+      <button onclick="sendToWhatsApp()">Send Payment Proof on WhatsApp</button>
+    </div>
+
+    <script>
+      const data = JSON.parse(localStorage.getItem("bookingData"));
+
+      if (data) {
+        document.getElementById("summaryText").innerHTML = `
+    Name: ${data.name} <br>
+    Pickup: ${data.pickup} <br>
+    Delivery: ${data.delivery} <br>
+    Package: ${data.package} <br>
+    Phone: ${data.phone}
+  `;
+      }
+
+      function sendToWhatsApp() {
+        const message = `PAYMENT CONFIRMATION:
+Name: ${data.name}
+Pickup: ${data.pickup}
+Delivery: ${data.delivery}
+Phone: ${data.phone}
+
+I have made payment.`;
+
+        window.open(
+          `https://wa.me/2347062284057?text=${encodeURIComponent(message)}`,
+          "_blank",
+        );
+      }
+    </script>
+  </body>
+</html>
