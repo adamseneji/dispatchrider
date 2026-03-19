@@ -80,9 +80,11 @@
 
       <div class="payment-box">
         <h3>Bank Transfer Details</h3>
-        <p><strong>Bank Name:</strong> Your Bank Name</p>
-        <p><strong>Account Name:</strong> Your Account Name</p>
-        <p><strong>Account Number:</strong> 0123456789</p>
+        <p><strong>Bank Name:</strong> ACCESS BANK</p>
+        <p>
+          <strong>Account Name:</strong> NIGERIAN BAR ASSOCIATION IKEJA BRANCH
+        </p>
+        <p><strong>Account Number:</strong> 0711869413</p>
         <p>Please send payment proof on WhatsApp after transfer.</p>
       </div>
 
@@ -94,12 +96,14 @@
 
       if (data) {
         document.getElementById("summaryText").innerHTML = `
-    Name: ${data.name} <br>
-    Pickup: ${data.pickup} <br>
-    Delivery: ${data.delivery} <br>
-    Package: ${data.package} <br>
-    Phone: ${data.phone}
-  `;
+          Name: ${data.name} <br>
+          Pickup Address: ${data.pickup} <br>
+          Delivery Address: ${data.delivery} <br>
+          Package: ${data.package} <br>
+          Phone: ${data.phone} <br>
+          Route: ${data.route} <br>
+          <strong>Price: ${data.price}</strong>
+        `;
       }
 
       function sendToWhatsApp() {
@@ -107,7 +111,10 @@
 Name: ${data.name}
 Pickup: ${data.pickup}
 Delivery: ${data.delivery}
+Package: ${data.package} 
 Phone: ${data.phone}
+Route: ${data.route}
+Price: ${data.price}
 
 I have made payment.`;
 
