@@ -39,7 +39,8 @@
       }
 
       input,
-      textarea {
+      textarea,
+      select {
         width: 100%;
         padding: 12px;
         border-radius: 10px;
@@ -92,11 +93,82 @@
         <label>Your Phone Number</label>
         <input type="text" id="phone" required />
 
+        <!-- ✅ ROUTE DROPDOWN ADDED -->
+        <label>Select Route</label>
+        <select id="route" required>
+          <option value="">Select Delivery Route</option>
+
+          <option value="Yaba-Obalende-3500">Yaba → Obalende (₦3,500)</option>
+          <option value="Yaba-VI-4000">Yaba → Victoria Island (₦4,000)</option>
+          <option value="Yaba-Lekki-5000">Yaba → Lekki (₦5,000)</option>
+
+          <option value="Surulere-VI-4000">
+            Surulere → Victoria Island (₦4,000)
+          </option>
+          <option value="Surulere-Ikoyi-4500">Surulere → Ikoyi (₦4,500)</option>
+          <option value="Surulere-Lekki-5500">Surulere → Lekki (₦5,500)</option>
+
+          <option value="Ikeja-Ikoyi-7000">Ikeja → Ikoyi (₦7,000)</option>
+          <option value="Ikeja-VI-6000">
+            Ikeja → Victoria Island (₦6,000)
+          </option>
+          <option value="Ikeja-Lekki-7000">Ikeja → Lekki (₦7,000)</option>
+
+          <option value="Lekki-Ajah-5000">Lekki → Ajah (₦5,000)</option>
+          <option value="Lekki-Sangotedo-6000">
+            Lekki → Sangotedo (₦6,000)
+          </option>
+
+          <option value="Ajah-Sangotedo-2500">Ajah → Sangotedo (₦2,500)</option>
+          <option value="Ajah-VGC-3000">Ajah → VGC (₦3,000)</option>
+
+          <option value="VI-Ikoyi-2000">
+            Victoria Island → Ikoyi (₦2,000)
+          </option>
+          <option value="Ikoyi-VI-2000">
+            Ikoyi → Victoria Island (₦2,000)
+          </option>
+
+          <option value="Gbagada-Lekki-4500">Gbagada → Lekki (₦4,500)</option>
+          <option value="Maryland-VI-5000">
+            Maryland → Victoria Island (₦5,000)
+          </option>
+          <option value="Oshodi-VI-4500">
+            Oshodi → Victoria Island (₦4,500)
+          </option>
+          <option value="Ikeja-Ogba-3000">Ikeja → Ogba (₦3,000)</option>
+        </select>
+
+        <!-- ✅ PRICE FIELD -->
+        <label>Price</label>
+        <input
+          type="text"
+          id="price"
+          readonly
+          placeholder="Price will show here"
+        />
+
         <button type="submit">Submit Booking</button>
       </form>
     </div>
 
     <script>
+      // ✅ SHOW PRICE WHEN ROUTE IS SELECTED
+      const routeSelect = document.getElementById("route");
+      const priceInput = document.getElementById("price");
+
+      routeSelect.addEventListener("change", function () {
+        const selected = this.value;
+
+        if (selected) {
+          const parts = selected.split("-");
+          const price = parts[2];
+          priceInput.value = "₦" + price;
+        } else {
+          priceInput.value = "";
+        }
+      });
+
       document
         .getElementById("bookingForm")
         .addEventListener("submit", function (e) {
@@ -108,6 +180,8 @@
             delivery: document.getElementById("delivery").value,
             package: document.getElementById("package").value,
             phone: document.getElementById("phone").value,
+            route: document.getElementById("route").value,
+            price: document.getElementById("price").value,
           };
 
           localStorage.setItem("bookingData", JSON.stringify(bookingData));
